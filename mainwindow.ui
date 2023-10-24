@@ -74,7 +74,7 @@
      <rect>
       <x>720</x>
       <y>80</y>
-      <width>82</width>
+      <width>91</width>
       <height>381</height>
      </rect>
     </property>
@@ -82,21 +82,33 @@
      <item>
       <widget class="QPushButton" name="addButton">
        <property name="text">
-        <string>PushButton</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/plus.svg</normaloff>icons/plus.svg</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="editButton">
        <property name="text">
-        <string>PushButton</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/pencil.svg</normaloff>icons/pencil.svg</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="removeButton">
        <property name="text">
-        <string>PushButton</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/cross.svg</normaloff>icons/cross.svg</iconset>
        </property>
       </widget>
      </item>
