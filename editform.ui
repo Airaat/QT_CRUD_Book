@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EditForm</class>
+ <widget class="QWidget" name="EditForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>592</width>
+    <height>314</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="OK_pushbutton">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>260</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ОК</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Cancel_pushbutton">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>260</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отмена</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>90</y>
+     <width>511</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QLabel" name="name_label">
+      <property name="text">
+       <string>Название</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="year_label">
+      <property name="text">
+       <string>Год  выпуска</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="mileage_label">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Пробег</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="body_label">
+      <property name="text">
+       <string>Кузов</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="gearbox_label">
+      <property name="text">
+       <string>КПП</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="drive_label">
+      <property name="text">
+       <string>Привод</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="position_label">
+      <property name="text">
+       <string>Руль</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>121</y>
+     <width>511</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <widget class="QLineEdit" name="name_edit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="year_edit"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="mileage_edit"/>
+    </item>
+    <item>
+     <widget class="QComboBox" name="body_edit">
+      <item>
+       <property name="text">
+        <string>Седан</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Купе</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Хэтчбек</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Универсал</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Кроссовер</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Внедорожник</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Пикап</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Фургон</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Минивэн</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Кабриолет</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Лимузин</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="gearbox_edit">
+      <item>
+       <property name="text">
+        <string>Автоматическая</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Механическая</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Роботизированная</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="drive_edit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <item>
+       <property name="text">
+        <string>FWD</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RWD</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4WD</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="position_edit">
+      <item>
+       <property name="text">
+        <string>L</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>R</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
