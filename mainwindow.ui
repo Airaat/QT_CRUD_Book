@@ -298,6 +298,9 @@ QPushButton:pressed{
           <height>24</height>
          </size>
         </property>
+        <property name="shortcut">
+         <string>Ctrl+Shift+A</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -340,6 +343,9 @@ QPushButton:pressed{
           <height>24</height>
          </size>
         </property>
+        <property name="shortcut">
+         <string>Ctrl+Shift+E</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -381,6 +387,9 @@ QPushButton:pressed{
           <width>24</width>
           <height>24</height>
          </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+Shift+D</string>
         </property>
        </widget>
       </item>

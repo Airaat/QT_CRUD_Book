@@ -25,6 +25,9 @@
    <property name="text">
     <string>ОК</string>
    </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="btn_cancel">
    <property name="geometry">
@@ -37,6 +40,9 @@
    </property>
    <property name="text">
     <string>Отмена</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
