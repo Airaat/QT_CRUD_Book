@@ -4,20 +4,25 @@
 void applyHeaderStyles(QTableWidget *tableWidget){
     QColor colorBlack("#242A38");
     QBrush brushBlack(colorBlack);
+
+    // Выделение всей строки при нажатии на ячейку
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     for (int row = 0; row < tableWidget->rowCount(); ++row) {
         for (int col = 0; col < tableWidget->columnCount(); ++col) {
             QTableWidgetItem *item = tableWidget->item(row, col);
             if (item) {
                 if (col != 0 && col != 3){
-                    item->setTextAlignment(Qt::AlignCenter);
+                    item->setTextAlignment(Qt::AlignCenter); // Размещение текста по центру
                 }
                 if (row % 2 == 0){
-                    item->setBackground(brushBlack);
+                    item->setBackground(brushBlack); // Стилизация нечетных строк
                 }
-                item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+                item->setFlags(item->flags() & ~Qt::ItemIsEditable); // Read-only mode для ячеек
             }
         }
     }
+    tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch); // Адаптивный дизайн для первого столбца
 }
 
 MainWindow::MainWindow(QWidget *parent)
