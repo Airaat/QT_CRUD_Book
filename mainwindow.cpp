@@ -14,6 +14,7 @@ void applyHeaderStyles(QTableWidget *tableWidget){
                 if (row % 2 == 0){
                     item->setBackground(brushBlack);
                 }
+                item->setFlags(item->flags() & ~Qt::ItemIsEditable);
             }
         }
     }
