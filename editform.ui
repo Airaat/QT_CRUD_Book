@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="OK_pushbutton">
+  <widget class="QPushButton" name="btn_ok">
    <property name="geometry">
     <rect>
      <x>380</x>
@@ -26,7 +26,7 @@
     <string>ОК</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Cancel_pushbutton">
+  <widget class="QPushButton" name="btn_cancel">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -39,7 +39,7 @@
     <string>Отмена</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -106,7 +106,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>51</x>
@@ -182,11 +182,6 @@
       <item>
        <property name="text">
         <string>Кабриолет</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Лимузин</string>
        </property>
       </item>
      </widget>

@@ -7,6 +7,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <car.h>
+#include <mainwindow.h>
 
 namespace Ui {
 class EditForm;
@@ -21,12 +22,15 @@ public:
     ~EditForm();
 
 private slots:
-    void on_OK_pushbutton_clicked();
+    void on_btn_ok_clicked();
 
-    void on_Cancel_pushbutton_clicked();
+    void on_btn_cancel_clicked();
 
 private:
     Ui::EditForm *ui;
+
+signals:
+    void addNewRecordRequested(const Car &obj);
 };
 
 #endif // EDITFORM_H

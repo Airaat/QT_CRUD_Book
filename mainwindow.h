@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <editform.h>
+#include <car.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -21,5 +22,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     EditForm *editform;
+
+public slots:
+    void addNewRecord(const Car &obj);
 };
 #endif // MAINWINDOW_H

@@ -75,6 +75,21 @@ QTableWidget {
       <property name="styleSheet">
        <string notr="true">background-color: #2f3542;</string>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
       <row>
        <property name="text">
         <string>1</string>
