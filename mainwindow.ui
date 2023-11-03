@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
+    <width>785</width>
     <height>397</height>
    </rect>
   </property>
@@ -19,18 +19,16 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QTableWidget::horizontalHeader {
-    background-color: #c0c0c0; /* Цвет фона заголовка */
-    color: #000000; /* Цвет текста заголовка */
-    font: bold 12px; /* Шрифт и размер текста заголовка */
+   <string notr="true">QHeaderView::section {
+    background-color: transparent;
+    color: white;
+    font-size: 14px;
+	font-weight: bold;
+	border: 1px solid black;
+	margin-left: 2px;
+	left: -2px;
+    border-radius: 50%;
 }
-
-QTableWidget::verticalHeader {
-    background-color: #c0c0c0; /* Цвет фона заголовка */
-    color: #000000; /* Цвет текста заголовка */
-    font: bold 12px; /* Шрифт и размер текста заголовка */
-}
-
 
 QWidget{
 	background-color:#2d3436;
@@ -46,174 +44,14 @@ QTableWidget {
 	background-color: #2f3542;
 	color: #dfe6e9;
 
-	border: 3px solid #636e72;
-	border-radius: 15%;
+	border: 0px solid #636e72;
+	border-radius: ;
 	
 	font: &quot;Arial Rounded MT Bold&quot;;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="tittle">
-      <property name="font">
-       <font>
-        <family>Eras Bold ITC</family>
-        <pointsize>42</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #dfe6e9;</string>
-      </property>
-      <property name="text">
-       <string>Cars catalog</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="styleSheet">
-       <string notr="true">background-color: #2f3542;</string>
-      </property>
-      <property name="showGrid">
-       <bool>false</bool>
-      </property>
-      <property name="sortingEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-      <property name="cornerButtonEnabled">
-       <bool>true</bool>
-      </property>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <row>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>Название</string>
-       </property>
-       <property name="background">
-        <color>
-         <red>47</red>
-         <green>53</green>
-         <blue>66</blue>
-        </color>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Год выпуска</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Пробег</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Кузов</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>КПП</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Привод</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Руль</string>
-       </property>
-      </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string>Porsche 911</string>
-       </property>
-      </item>
-      <item row="0" column="1">
-       <property name="text">
-        <string>2013</string>
-       </property>
-      </item>
-      <item row="0" column="2">
-       <property name="text">
-        <string>64000 KM</string>
-       </property>
-      </item>
-      <item row="0" column="3">
-       <property name="text">
-        <string>Coupe</string>
-       </property>
-      </item>
-      <item row="0" column="4">
-       <property name="text">
-        <string>AT</string>
-       </property>
-      </item>
-      <item row="0" column="5">
-       <property name="text">
-        <string>RWD</string>
-       </property>
-      </item>
-      <item row="0" column="6">
-       <property name="text">
-        <string>L</string>
-       </property>
-      </item>
-      <item row="1" column="0">
-       <property name="text">
-        <string>BMW X1</string>
-       </property>
-      </item>
-      <item row="1" column="1">
-       <property name="text">
-        <string>2008</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>33000 KM</string>
-       </property>
-      </item>
-      <item row="1" column="3">
-       <property name="text">
-        <string>Crossover</string>
-       </property>
-      </item>
-      <item row="1" column="4">
-       <property name="text">
-        <string>AT</string>
-       </property>
-      </item>
-      <item row="1" column="5">
-       <property name="text">
-        <string>4WD</string>
-       </property>
-      </item>
-      <item row="1" column="6">
-       <property name="text">
-        <string>L</string>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="1" column="1">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -342,6 +180,205 @@ QPushButton:pressed{
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="tittle">
+      <property name="font">
+       <font>
+        <family>Eras Bold ITC</family>
+        <pointsize>42</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #dfe6e9;</string>
+      </property>
+      <property name="text">
+       <string>Cars catalog</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="styleSheet">
+       <string notr="true">background-color: #2f3542;</string>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::NoPen</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Название</string>
+       </property>
+       <property name="background">
+        <color>
+         <red>47</red>
+         <green>53</green>
+         <blue>66</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Год выпуска</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Пробег</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Кузов</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>КПП</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Привод</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Руль</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string>Porsche 911</string>
+       </property>
+       <property name="font">
+        <font>
+         <italic>false</italic>
+         <bold>false</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <kerning>true</kerning>
+        </font>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
+        <string>2013</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="2">
+       <property name="text">
+        <string>64000 KM</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="3">
+       <property name="text">
+        <string>Купе</string>
+       </property>
+      </item>
+      <item row="0" column="4">
+       <property name="text">
+        <string>Автоматическая</string>
+       </property>
+      </item>
+      <item row="0" column="5">
+       <property name="text">
+        <string>RWD</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="6">
+       <property name="text">
+        <string>L</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string>BMW X1</string>
+       </property>
+      </item>
+      <item row="1" column="1">
+       <property name="text">
+        <string>2008</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="2">
+       <property name="text">
+        <string>33000 KM</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="1" column="3">
+       <property name="text">
+        <string>Кроссовер</string>
+       </property>
+      </item>
+      <item row="1" column="4">
+       <property name="text">
+        <string>Автоматическая</string>
+       </property>
+      </item>
+      <item row="1" column="5">
+       <property name="text">
+        <string>4WD</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="1" column="6">
+       <property name="text">
+        <string>L</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+     </widget>
     </item>
    </layout>
   </widget>

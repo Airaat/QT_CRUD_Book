@@ -2,17 +2,14 @@
 #define EDITFORM_H
 
 #include <QWidget>
-#include <QPushButton>
-#include <QLabel>
-#include <QComboBox>
-#include <QLineEdit>
-#include <car.h>
 #include <mainwindow.h>
+#include <car.h>
 
 namespace Ui {
 class EditForm;
 }
 
+class MainWindow;
 class EditForm : public QWidget
 {
     Q_OBJECT
@@ -26,6 +23,7 @@ private slots:
 
     void on_btn_cancel_clicked();
 
+    void clear_widget();
 private:
     Ui::EditForm *ui;
 

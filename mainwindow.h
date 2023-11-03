@@ -3,11 +3,13 @@
 
 #include <QMainWindow>
 #include <editform.h>
-#include <car.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class EditForm;
+class Car;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -18,6 +20,7 @@ public:
 
 private slots:
     void on_addButton_clicked();
+    void on_editButton_clicked();
 
 private:
     Ui::MainWindow *ui;

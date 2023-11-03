@@ -1,12 +1,32 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+void applyHeaderStyles(QTableWidget *tableWidget){
+    QColor colorBlack("#242A38");
+    QBrush brushBlack(colorBlack);
+    for (int row = 0; row < tableWidget->rowCount(); ++row) {
+        for (int col = 0; col < tableWidget->columnCount(); ++col) {
+            QTableWidgetItem *item = tableWidget->item(row, col);
+            if (item) {
+                if (col != 0 && col != 3){
+                    item->setTextAlignment(Qt::AlignCenter);
+                }
+                if (row % 2 == 0){
+                    item->setBackground(brushBlack);
+                }
+            }
+        }
+    }
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    EditForm *editform = new EditForm;
+    applyHeaderStyles(ui->tableWidget);
+
+    editform = new EditForm;
     connect(editform, &EditForm::addNewRecordRequested, this, &MainWindow::addNewRecord);
 }
 
@@ -27,7 +47,7 @@ void MainWindow::addNewRecord(const Car &car)
 
     QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
     QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
-    QTableWidgetItem *mileageItem = new QTableWidgetItem(QString::number(car.getMileage()));
+    QTableWidgetItem *mileageItem = new QTableWidgetItem(QString::number(car.getMileage()) + " KM");
     QTableWidgetItem *bodyItem = new QTableWidgetItem(QString::fromStdString(car.getBody()));
     QTableWidgetItem *gearboxItem = new QTableWidgetItem(QString::fromStdString(car.getGearbox()));
     QTableWidgetItem *driveItem = new QTableWidgetItem(QString::fromStdString(car.getDrive()));
@@ -41,4 +61,11 @@ void MainWindow::addNewRecord(const Car &car)
     ui->tableWidget->setItem(row, 4, gearboxItem);
     ui->tableWidget->setItem(row, 5, driveItem);
     ui->tableWidget->setItem(row, 6, positionItem);
+
+    applyHeaderStyles(ui->tableWidget);
+}
+
+void MainWindow::on_editButton_clicked()
+{
+    editform->show();
 }

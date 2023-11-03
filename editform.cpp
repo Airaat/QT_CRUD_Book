@@ -7,6 +7,8 @@ EditForm::EditForm(QWidget *parent) :
     ui(new Ui::EditForm)
 {
     ui->setupUi(this);
+
+//    clear_widget();
 }
 
 EditForm::~EditForm()
@@ -45,10 +47,21 @@ void EditForm::on_btn_ok_clicked()
     if(!err){
         emit addNewRecordRequested(car);
         close();
+//        clear_widget();
     }
 }
 
 void EditForm::on_btn_cancel_clicked()
 {
     close();
+}
+
+void EditForm::clear_widget(){
+    ui->name_edit->clear();
+    ui->year_edit->clear();
+    ui->mileage_edit->clear();
+    ui->body_edit->setCurrentIndex(-1);
+    ui->gearbox_edit->setCurrentIndex(-1);
+    ui->drive_edit->setCurrentIndex(-1);
+    ui->position_edit->setCurrentIndex(-1);
 }
