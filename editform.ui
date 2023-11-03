@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>592</width>
+    <width>786</width>
     <height>314</height>
    </rect>
   </property>
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="btn_ok">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>260</y>
+     <x>580</x>
+     <y>270</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QPushButton" name="btn_cancel">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>260</y>
+     <x>670</x>
+     <y>270</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -45,83 +45,16 @@
     <string>Esc</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>90</y>
-     <width>511</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
-    <item>
-     <widget class="QLabel" name="name_label">
-      <property name="text">
-       <string>Название</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="year_label">
-      <property name="text">
-       <string>Год  выпуска</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="mileage_label">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Пробег</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="body_label">
-      <property name="text">
-       <string>Кузов</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="gearbox_label">
-      <property name="text">
-       <string>КПП</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="drive_label">
-      <property name="text">
-       <string>Привод</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="position_label">
-      <property name="text">
-       <string>Руль</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>51</x>
-     <y>121</y>
-     <width>511</width>
+     <x>31</x>
+     <y>119</y>
+     <width>695</width>
      <height>26</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QLineEdit" name="name_edit">
       <property name="sizePolicy">
@@ -130,16 +63,48 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="text">
+       <string>Volkswagen polo</string>
+      </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="year_edit"/>
+     <widget class="QLineEdit" name="year_edit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">max-width: 60px;</string>
+      </property>
+      <property name="text">
+       <string>2004</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="mileage_edit"/>
+     <widget class="QLineEdit" name="mileage_edit">
+      <property name="styleSheet">
+       <string notr="true">max-width: 70px;</string>
+      </property>
+      <property name="text">
+       <string>500000</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QComboBox" name="body_edit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">max-width: 105px;</string>
+      </property>
       <item>
        <property name="text">
         <string>Седан</string>
@@ -194,14 +159,17 @@
     </item>
     <item>
      <widget class="QComboBox" name="gearbox_edit">
+      <property name="styleSheet">
+       <string notr="true">max-width: 135px;</string>
+      </property>
       <item>
        <property name="text">
-        <string>Автоматическая</string>
+        <string>Механическая</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Механическая</string>
+        <string>Автоматическая</string>
        </property>
       </item>
       <item>
@@ -222,6 +190,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="styleSheet">
+       <string notr="true">max-width: 55px;</string>
+      </property>
       <item>
        <property name="text">
         <string>FWD</string>
@@ -241,6 +212,9 @@
     </item>
     <item>
      <widget class="QComboBox" name="position_edit">
+      <property name="styleSheet">
+       <string notr="true">max-width: 35px;</string>
+      </property>
       <item>
        <property name="text">
         <string>L</string>
@@ -254,6 +228,103 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="name_label">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>90</y>
+     <width>53</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Название</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="year_label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>90</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Год  выпуска</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mileage_label">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>90</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>Пробег</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="gearbox_label">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>90</y>
+     <width>25</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>КПП</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="drive_label">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>90</y>
+     <width>43</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Привод</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="body_label">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>90</y>
+     <width>32</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Кузов</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="position_label">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>90</y>
+     <width>25</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Руль</string>
+   </property>
   </widget>
  </widget>
  <resources/>
