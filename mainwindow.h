@@ -23,6 +23,8 @@ private slots:
     void on_editButton_clicked();
     void onTableSelectionChanged();
 
+    void on_removeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     EditForm *editform;

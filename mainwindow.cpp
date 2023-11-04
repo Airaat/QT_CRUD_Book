@@ -112,3 +112,13 @@ void MainWindow::on_editButton_clicked()
     editform->show();
 
 }
+
+void MainWindow::on_removeButton_clicked()
+{
+    int selectedRow = ui->tableWidget->currentRow();
+    if (selectedRow >= 0)
+    {
+        ui->tableWidget->removeRow(selectedRow);
+    }
+}
+
