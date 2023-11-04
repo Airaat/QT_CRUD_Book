@@ -15,6 +15,8 @@ class EditForm : public QWidget
     Q_OBJECT
 
 public:
+    void setData(const QString &name,const QString &year,const QString &mileage,const QString &body,
+                 const QString &gearbox, const QString &drive,const QString &position);
     explicit EditForm(QWidget *parent = nullptr);
     ~EditForm();
 

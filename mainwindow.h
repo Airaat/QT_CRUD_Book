@@ -21,6 +21,7 @@ public:
 private slots:
     void on_addButton_clicked();
     void on_editButton_clicked();
+    void onTableSelectionChanged();
 
 private:
     Ui::MainWindow *ui;

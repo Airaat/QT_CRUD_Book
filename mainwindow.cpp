@@ -34,12 +34,25 @@ MainWindow::MainWindow(QWidget *parent)
 
     editform = new EditForm;
     connect(editform, &EditForm::addNewRecordRequested, this, &MainWindow::addNewRecord);
+    connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, &MainWindow::onTableSelectionChanged);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::onTableSelectionChanged() {
+    if (ui->tableWidget->selectedItems().isEmpty()) {
+        ui->editButton->setEnabled(false); // Сделать кнопку "Edit" недоступной, если ни одна строка не выбрана.
+        ui->removeButton->setEnabled(false);
+    } else {
+        ui->editButton->setEnabled(true); // Сделать кнопку "Edit" доступной, если строка выбрана.
+        ui->removeButton->setEnabled(true);
+    }
+}
+
 
 
 void MainWindow::on_addButton_clicked()
@@ -73,5 +86,29 @@ void MainWindow::addNewRecord(const Car &car)
 
 void MainWindow::on_editButton_clicked()
 {
+    if (ui->tableWidget->selectedItems().isEmpty()) {
+        return; // Ничего не делаем, если ни одна строка не выбрана.
+    }
+
+    // Получить выбранные элементы из таблицы.
+    QList<QTableWidgetItem*> selectedItems = ui->tableWidget->selectedItems();
+
+    if (selectedItems.count() < 7) {
+        return; // Убедиться, что выбраны все элементы строки.
+    }
+
+    // Получить данные из выбранной строки.
+    QString name = selectedItems.at(0)->text();
+    QString year = selectedItems.at(1)->text();
+    QString mileage = selectedItems.at(2)->text();
+    mileage = mileage.mid(0,mileage.length()-3); // Отрезаем КМ
+    QString body = selectedItems.at(3)->text();
+    QString gearbox = selectedItems.at(4)->text();
+    QString drive = selectedItems.at(5)->text();
+    QString position = selectedItems.at(6)->text();
+
+    // Создать и показать окно EditForm и передать в него данные.
+    editform->setData(name,year,mileage,body,gearbox,drive,position);
     editform->show();
+
 }

@@ -65,3 +65,26 @@ void EditForm::clear_widget(){
     ui->drive_edit->setCurrentIndex(-1);
     ui->position_edit->setCurrentIndex(-1);
 }
+
+void EditForm::setData(const QString &name, const QString &year, const QString &mileage,
+                       const QString &body, const QString &gearbox, const QString &drive,
+                       const QString &position){
+    ui->name_edit->setText(name);
+    ui->year_edit->setText(year);
+    ui->mileage_edit->setText(mileage);
+    int bodyIndex = ui->body_edit->findText(body);
+    if (bodyIndex >= 0) {
+        ui->body_edit->setCurrentIndex(bodyIndex);
+    }
+
+    int gearboxIndex = ui->gearbox_edit->findText(gearbox);
+    if (gearboxIndex >= 0) {
+        ui->gearbox_edit->setCurrentIndex(gearboxIndex);
+    }
+
+    int driveIndex = ui->drive_edit->findText(drive);
+    if (driveIndex >= 0) {
+        ui->drive_edit->setCurrentIndex(driveIndex);
+    }
+    ui->position_edit->setCurrentText(position);
+}
