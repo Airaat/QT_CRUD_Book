@@ -3,7 +3,9 @@
 
 void applyHeaderStyles(QTableWidget *tableWidget){
     QColor colorBlack("#242A38");
+    QColor colorDefault("#2F3542");
     QBrush brushBlack(colorBlack);
+    QBrush brushDefault(colorDefault);
 
     // Выделение всей строки при нажатии на ячейку
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -17,6 +19,8 @@ void applyHeaderStyles(QTableWidget *tableWidget){
                 }
                 if (row % 2 == 0){
                     item->setBackground(brushBlack); // Стилизация нечетных строк
+                } else {
+                    item->setBackground(brushDefault); // Стилизация четных строк
                 }
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable); // Read-only mode для ячеек
             }
@@ -119,6 +123,7 @@ void MainWindow::on_removeButton_clicked()
     if (selectedRow >= 0)
     {
         ui->tableWidget->removeRow(selectedRow);
+        applyHeaderStyles(ui->tableWidget);
     }
 }
 
