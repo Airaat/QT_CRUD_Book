@@ -47,17 +47,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Изменение состояния функциональных кнопок
 void MainWindow::onTableSelectionChanged() {
     if (ui->tableWidget->selectedItems().isEmpty()) {
-        ui->editButton->setEnabled(false); // Сделать кнопку "Edit" недоступной, если ни одна строка не выбрана.
+        ui->editButton->setEnabled(false);
         ui->removeButton->setEnabled(false);
     } else {
-        ui->editButton->setEnabled(true); // Сделать кнопку "Edit" доступной, если строка выбрана.
+        ui->editButton->setEnabled(true);
         ui->removeButton->setEnabled(true);
     }
 }
-
-
 
 void MainWindow::on_addButton_clicked()
 {
@@ -65,27 +64,6 @@ void MainWindow::on_addButton_clicked()
     ui->tableWidget->insertRow(row);
     editform->setIndex(row);
     editform->show();
-}
-
-void MainWindow::addNewRecord(const Car &car, int row)
-{
-    QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
-    QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
-    QTableWidgetItem *mileageItem = new QTableWidgetItem(QString::number(car.getMileage()) + " KM");
-    QTableWidgetItem *bodyItem = new QTableWidgetItem(QString::fromStdString(car.getBody()));
-    QTableWidgetItem *gearboxItem = new QTableWidgetItem(QString::fromStdString(car.getGearbox()));
-    QTableWidgetItem *driveItem = new QTableWidgetItem(QString::fromStdString(car.getDrive()));
-    QTableWidgetItem *positionItem = new QTableWidgetItem(QString::fromStdString((car.getPosition()) ? "R" : "L"));
-
-    ui->tableWidget->setItem(row, 0, nameItem);
-    ui->tableWidget->setItem(row, 1, yearItem);
-    ui->tableWidget->setItem(row, 2, mileageItem);
-    ui->tableWidget->setItem(row, 3, bodyItem);
-    ui->tableWidget->setItem(row, 4, gearboxItem);
-    ui->tableWidget->setItem(row, 5, driveItem);
-    ui->tableWidget->setItem(row, 6, positionItem);
-
-    applyHeaderStyles(ui->tableWidget);
 }
 
 void MainWindow::on_editButton_clicked()
@@ -130,3 +108,23 @@ void MainWindow::on_removeButton_clicked()
     }
 }
 
+void MainWindow::addNewRecord(const Car &car, int row)
+{
+    QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
+    QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
+    QTableWidgetItem *mileageItem = new QTableWidgetItem(QString::number(car.getMileage()) + " KM");
+    QTableWidgetItem *bodyItem = new QTableWidgetItem(QString::fromStdString(car.getBody()));
+    QTableWidgetItem *gearboxItem = new QTableWidgetItem(QString::fromStdString(car.getGearbox()));
+    QTableWidgetItem *driveItem = new QTableWidgetItem(QString::fromStdString(car.getDrive()));
+    QTableWidgetItem *positionItem = new QTableWidgetItem(QString::fromStdString((car.getPosition()) ? "R" : "L"));
+
+    ui->tableWidget->setItem(row, 0, nameItem);
+    ui->tableWidget->setItem(row, 1, yearItem);
+    ui->tableWidget->setItem(row, 2, mileageItem);
+    ui->tableWidget->setItem(row, 3, bodyItem);
+    ui->tableWidget->setItem(row, 4, gearboxItem);
+    ui->tableWidget->setItem(row, 5, driveItem);
+    ui->tableWidget->setItem(row, 6, positionItem);
+
+    applyHeaderStyles(ui->tableWidget);
+}
