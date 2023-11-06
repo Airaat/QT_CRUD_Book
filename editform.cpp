@@ -2,13 +2,13 @@
 #include "ui_editform.h"
 
 EditForm::EditForm(QWidget *parent) :
-//    QWidget(parent, Qt::FramelessWindowHint),
-    QWidget(parent),
+    QWidget(parent, Qt::FramelessWindowHint),
+//    QWidget(parent),
     ui(new Ui::EditForm)
 {
     ui->setupUi(this);
-
-//    clear_widget();
+    _rowindex = -1;
+    clear_widget();
 }
 
 EditForm::~EditForm()
@@ -45,9 +45,9 @@ void EditForm::on_btn_ok_clicked()
     car.setPosition(ui->position_edit->currentIndex());
 
     if(!err){
-        emit addNewRecordRequested(car);
+        emit addNewRecordRequested(car, _rowindex);
         close();
-//        clear_widget();
+        clear_widget();
     }
 }
 

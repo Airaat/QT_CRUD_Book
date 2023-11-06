@@ -21,15 +21,15 @@ public:
 private slots:
     void on_addButton_clicked();
     void on_editButton_clicked();
-    void onTableSelectionChanged();
-
     void on_removeButton_clicked();
+
+    void onTableSelectionChanged();
 
 private:
     Ui::MainWindow *ui;
     EditForm *editform;
 
 public slots:
-    void addNewRecord(const Car &obj);
+    void addNewRecord(const Car &obj, int indexRow);
 };
 #endif // MAINWINDOW_H

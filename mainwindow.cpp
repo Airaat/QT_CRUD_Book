@@ -61,13 +61,14 @@ void MainWindow::onTableSelectionChanged() {
 
 void MainWindow::on_addButton_clicked()
 {
+    int row = ui->tableWidget->rowCount();
+    ui->tableWidget->insertRow(row);
+    editform->setIndex(row);
     editform->show();
 }
 
-void MainWindow::addNewRecord(const Car &car)
+void MainWindow::addNewRecord(const Car &car, int row)
 {
-    int row = ui->tableWidget->rowCount();
-
     QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
     QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
     QTableWidgetItem *mileageItem = new QTableWidgetItem(QString::number(car.getMileage()) + " KM");
@@ -76,7 +77,6 @@ void MainWindow::addNewRecord(const Car &car)
     QTableWidgetItem *driveItem = new QTableWidgetItem(QString::fromStdString(car.getDrive()));
     QTableWidgetItem *positionItem = new QTableWidgetItem(QString::fromStdString((car.getPosition()) ? "R" : "L"));
 
-    ui->tableWidget->insertRow(row);
     ui->tableWidget->setItem(row, 0, nameItem);
     ui->tableWidget->setItem(row, 1, yearItem);
     ui->tableWidget->setItem(row, 2, mileageItem);
@@ -101,6 +101,8 @@ void MainWindow::on_editButton_clicked()
         return; // Убедиться, что выбраны все элементы строки.
     }
 
+    int row = selectedItems.at(0)->row();
+
     // Получить данные из выбранной строки.
     QString name = selectedItems.at(0)->text();
     QString year = selectedItems.at(1)->text();
@@ -113,6 +115,7 @@ void MainWindow::on_editButton_clicked()
 
     // Создать и показать окно EditForm и передать в него данные.
     editform->setData(name,year,mileage,body,gearbox,drive,position);
+    editform->setIndex(row);
     editform->show();
 
 }
