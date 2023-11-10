@@ -100,7 +100,6 @@ void MainWindow::onTableSelectionChanged() {
 void MainWindow::addEntry()
 {
     int row = ui->tableWidget->rowCount();
-    ui->tableWidget->insertRow(row);
     editform->setIndex(row);
     editform->show();
 }
@@ -149,6 +148,8 @@ void MainWindow::removeEntry()
 
 void MainWindow::addNewRecord(const Car &car, int row)
 {
+    ui->tableWidget->insertRow(row);
+
     QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
     QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
     QTableWidgetItem *mileageItem = new QTableWidgetItem(QString::number(car.getMileage()) + " KM");

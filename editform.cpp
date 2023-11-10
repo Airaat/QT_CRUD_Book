@@ -56,11 +56,8 @@ void EditForm::Confirm()
 
 void EditForm::Decline()
 {
-    if (_rowindex >= 0) {
-        setIndex(--_rowindex);
-    }
-
     close();
+    clearWidget();
 }
 
 void EditForm::clearWidget(){

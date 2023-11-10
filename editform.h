@@ -26,7 +26,6 @@ public:
 
 private slots:
     void Confirm();
-
     void Decline();
 
     void clearWidget();
