@@ -56,7 +56,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QLineEdit" name="name_edit">
+     <widget class="QLineEdit" name="edit_name">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -69,7 +69,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="year_edit">
+     <widget class="QLineEdit" name="edit_year">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -88,7 +88,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="mileage_edit">
+     <widget class="QLineEdit" name="edit_milage">
       <property name="styleSheet">
        <string notr="true">max-width: 70px;</string>
       </property>
@@ -101,7 +101,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="body_edit">
+     <widget class="QComboBox" name="edit_body">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -164,7 +164,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="gearbox_edit">
+     <widget class="QComboBox" name="edit_gearbox">
       <property name="styleSheet">
        <string notr="true">max-width: 135px;</string>
       </property>
@@ -186,7 +186,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="drive_edit">
+     <widget class="QComboBox" name="edit_drive">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -217,7 +217,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="position_edit">
+     <widget class="QComboBox" name="edit_position">
       <property name="styleSheet">
        <string notr="true">max-width: 35px;</string>
       </property>
@@ -235,7 +235,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="name_label">
+  <widget class="QLabel" name="label_name">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -248,7 +248,7 @@
     <string>Название</string>
    </property>
   </widget>
-  <widget class="QLabel" name="year_label">
+  <widget class="QLabel" name="label_year">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -261,7 +261,7 @@
     <string>Год  выпуска</string>
    </property>
   </widget>
-  <widget class="QLabel" name="mileage_label">
+  <widget class="QLabel" name="label_mileage">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -280,7 +280,7 @@
     <string>Пробег</string>
    </property>
   </widget>
-  <widget class="QLabel" name="gearbox_label">
+  <widget class="QLabel" name="label_gearbox">
    <property name="geometry">
     <rect>
      <x>520</x>
@@ -293,7 +293,7 @@
     <string>КПП</string>
    </property>
   </widget>
-  <widget class="QLabel" name="drive_label">
+  <widget class="QLabel" name="label_drive">
    <property name="geometry">
     <rect>
      <x>620</x>
@@ -306,7 +306,7 @@
     <string>Привод</string>
    </property>
   </widget>
-  <widget class="QLabel" name="body_label">
+  <widget class="QLabel" name="label_body">
    <property name="geometry">
     <rect>
      <x>400</x>
@@ -319,7 +319,7 @@
     <string>Кузов</string>
    </property>
   </widget>
-  <widget class="QLabel" name="position_label">
+  <widget class="QLabel" name="label_position">
    <property name="geometry">
     <rect>
      <x>680</x>

@@ -260,7 +260,7 @@ QTableWidget {
     <item row="2" column="2">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QPushButton" name="addButton">
+       <widget class="QPushButton" name="btn_add">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -304,7 +304,7 @@ QPushButton:pressed{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="editButton">
+       <widget class="QPushButton" name="btn_edit">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -349,7 +349,7 @@ QPushButton:pressed{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="removeButton">
+       <widget class="QPushButton" name="btn_remove">
         <property name="enabled">
          <bool>false</bool>
         </property>
