@@ -25,11 +25,11 @@ public:
     ~EditForm();
 
 private slots:
-    void on_btn_ok_clicked();
+    void Confirm();
 
-    void on_btn_cancel_clicked();
+    void Decline();
 
-    void clear_widget();
+    void clearWidget();
 private:
     Ui::EditForm *ui;
     int _rowindex;

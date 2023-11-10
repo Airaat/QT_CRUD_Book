@@ -36,6 +36,41 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     applyHeaderStyles(ui->tableWidget);
 
+    QMenuBar *menubar = new QMenuBar(this);
+    setMenuBar(menubar);
+
+    QMenu *fileMenu = menubar->addMenu("File");
+
+    QAction *saveAct = new QAction("Save", this);
+    QAction *openAct = new QAction("Open", this);
+    QAction *exitAct = new QAction("Exit", this);
+
+    fileMenu->addAction(saveAct);
+    fileMenu->addAction(openAct);
+    fileMenu->addSeparator();
+    fileMenu->addAction(exitAct);
+
+    QMenu *toolMenu = menubar->addMenu("Edit");
+
+    act_add = new QAction("Add", this);
+    connect(act_add, &QAction::triggered, this, &MainWindow::addEntry);
+    connect(ui->btn_add, &QPushButton::clicked, this, &MainWindow::addEntry);
+
+    act_edit = new QAction("Edit", this);
+    act_edit->setEnabled(false);
+    connect(act_edit, &QAction::triggered, this, &MainWindow::editEntry);
+    connect(ui->btn_edit, &QPushButton::clicked, this, &MainWindow::editEntry);
+
+    act_remove = new QAction("Delete", this);
+    act_remove->setEnabled(false);
+    connect(act_remove, &QAction::triggered, this, &MainWindow::removeEntry);
+    connect(ui->btn_remove, &QPushButton::clicked, this, &MainWindow::removeEntry);
+
+    toolMenu->addAction(act_add);
+    toolMenu->addAction(act_edit);
+    toolMenu->addSeparator();
+    toolMenu->addAction(act_remove);
+
     editform = new EditForm;
     connect(editform, &EditForm::addNewRecordRequested, this, &MainWindow::addNewRecord);
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, &MainWindow::onTableSelectionChanged);
@@ -50,15 +85,19 @@ MainWindow::~MainWindow()
 // Изменение состояния функциональных кнопок
 void MainWindow::onTableSelectionChanged() {
     if (ui->tableWidget->selectedItems().isEmpty()) {
-        ui->editButton->setEnabled(false);
-        ui->removeButton->setEnabled(false);
+        ui->btn_edit->setEnabled(false);
+        ui->btn_remove->setEnabled(false);
+        act_edit->setEnabled(false);
+        act_remove->setEnabled(false);
     } else {
-        ui->editButton->setEnabled(true);
-        ui->removeButton->setEnabled(true);
+        ui->btn_edit->setEnabled(true);
+        ui->btn_remove->setEnabled(true);
+        act_edit->setEnabled(true);
+        act_remove->setEnabled(true);
     }
 }
 
-void MainWindow::on_addButton_clicked()
+void MainWindow::addEntry()
 {
     int row = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(row);
@@ -66,7 +105,7 @@ void MainWindow::on_addButton_clicked()
     editform->show();
 }
 
-void MainWindow::on_editButton_clicked()
+void MainWindow::editEntry()
 {
     if (ui->tableWidget->selectedItems().isEmpty()) {
         return; // Ничего не делаем, если ни одна строка не выбрана.
@@ -98,7 +137,7 @@ void MainWindow::on_editButton_clicked()
 
 }
 
-void MainWindow::on_removeButton_clicked()
+void MainWindow::removeEntry()
 {
     int selectedRow = ui->tableWidget->currentRow();
     if (selectedRow >= 0)

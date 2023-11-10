@@ -3,12 +3,15 @@
 
 EditForm::EditForm(QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint),
-//    QWidget(parent),
     ui(new Ui::EditForm)
 {
     ui->setupUi(this);
+
+    connect(ui->btn_ok, &QPushButton::clicked, this, &EditForm::Confirm);
+    connect(ui->btn_cancel, &QPushButton::clicked, this, &EditForm::Decline);
+
     _rowindex = -1;
-    clear_widget();
+    clearWidget();
 }
 
 EditForm::~EditForm()
@@ -16,13 +19,13 @@ EditForm::~EditForm()
     delete ui;
 }
 
-void EditForm::on_btn_ok_clicked()
+void EditForm::Confirm()
 {
     int err = 0;
     Car car;
-    QString modelText = ui->name_edit->text();
-    QString yearText = ui->year_edit->text();
-    QString mileageText = ui->mileage_edit->text();
+    QString modelText = ui->edit_name->text();
+    QString yearText = ui->edit_year->text();
+    QString mileageText = ui->edit_milage->text();
     if(modelText.isEmpty()){
         err = 1;
     } else {
@@ -39,52 +42,56 @@ void EditForm::on_btn_ok_clicked()
         car.setMileage(mileageText.toUInt());
     }
 
-    car.setBody(ui->body_edit->currentText().toStdString());
-    car.setGearbox(ui->gearbox_edit->currentText().toStdString());
-    car.setDrive(ui->drive_edit->currentText().toStdString());
-    car.setPosition(ui->position_edit->currentIndex());
+    car.setBody(ui->edit_body->currentText().toStdString());
+    car.setGearbox(ui->edit_gearbox->currentText().toStdString());
+    car.setDrive(ui->edit_drive->currentText().toStdString());
+    car.setPosition(ui->edit_position->currentIndex());
 
     if(!err){
         emit addNewRecordRequested(car, _rowindex);
         close();
-        clear_widget();
+        clearWidget();
     }
 }
 
-void EditForm::on_btn_cancel_clicked()
+void EditForm::Decline()
 {
+    if (_rowindex >= 0) {
+        setIndex(--_rowindex);
+    }
+
     close();
 }
 
-void EditForm::clear_widget(){
-    ui->name_edit->clear();
-    ui->year_edit->clear();
-    ui->mileage_edit->clear();
-    ui->body_edit->setCurrentIndex(-1);
-    ui->gearbox_edit->setCurrentIndex(-1);
-    ui->drive_edit->setCurrentIndex(-1);
-    ui->position_edit->setCurrentIndex(-1);
+void EditForm::clearWidget(){
+    ui->edit_name->clear();
+    ui->edit_year->clear();
+    ui->edit_milage->clear();
+    ui->edit_body->setCurrentIndex(-1);
+    ui->edit_gearbox->setCurrentIndex(-1);
+    ui->edit_drive->setCurrentIndex(-1);
+    ui->edit_position->setCurrentIndex(-1);
 }
 
 void EditForm::setData(const QString &name, const QString &year, const QString &mileage,
                        const QString &body, const QString &gearbox, const QString &drive,
                        const QString &position){
-    ui->name_edit->setText(name);
-    ui->year_edit->setText(year);
-    ui->mileage_edit->setText(mileage);
-    int bodyIndex = ui->body_edit->findText(body);
+    ui->edit_name->setText(name);
+    ui->edit_year->setText(year);
+    ui->edit_milage->setText(mileage);
+    int bodyIndex = ui->edit_body->findText(body);
     if (bodyIndex >= 0) {
-        ui->body_edit->setCurrentIndex(bodyIndex);
+        ui->edit_body->setCurrentIndex(bodyIndex);
     }
 
-    int gearboxIndex = ui->gearbox_edit->findText(gearbox);
+    int gearboxIndex = ui->edit_gearbox->findText(gearbox);
     if (gearboxIndex >= 0) {
-        ui->gearbox_edit->setCurrentIndex(gearboxIndex);
+        ui->edit_gearbox->setCurrentIndex(gearboxIndex);
     }
 
-    int driveIndex = ui->drive_edit->findText(drive);
+    int driveIndex = ui->edit_drive->findText(drive);
     if (driveIndex >= 0) {
-        ui->drive_edit->setCurrentIndex(driveIndex);
+        ui->edit_drive->setCurrentIndex(driveIndex);
     }
-    ui->position_edit->setCurrentText(position);
+    ui->edit_position->setCurrentText(position);
 }

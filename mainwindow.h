@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMenuBar>
 #include <editform.h>
 
 QT_BEGIN_NAMESPACE
@@ -19,15 +20,19 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_addButton_clicked();
-    void on_editButton_clicked();
-    void on_removeButton_clicked();
+    void addEntry();
+    void editEntry();
+    void removeEntry();
 
     void onTableSelectionChanged();
 
 private:
     Ui::MainWindow *ui;
     EditForm *editform;
+
+    QAction *act_add;
+    QAction *act_edit;
+    QAction *act_remove;
 
 public slots:
     void addNewRecord(const Car &obj, int indexRow);
