@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidget>
 #include <QMenuBar>
 #include <editform.h>
 
@@ -17,6 +18,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void setupHeaderStyles(QTableWidget *tableWidget);
+    void setupMenuBar(QMenuBar *menubar);
     ~MainWindow();
 
 private slots:

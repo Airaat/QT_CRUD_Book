@@ -1,75 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-void applyHeaderStyles(QTableWidget *tableWidget){
-    QColor colorBlack(2370104); //#242A38
-    QColor colorDefault(3093826); //#2F3542
-    QBrush brushBlack(colorBlack);
-    QBrush brushDefault(colorDefault);
-
-    // Выделение всей строки при нажатии на ячейку
-    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-    for (int row = 0; row < tableWidget->rowCount(); ++row) {
-        for (int col = 0; col < tableWidget->columnCount(); ++col) {
-            QTableWidgetItem *item = tableWidget->item(row, col);
-            if (item) {
-                if (col != 0 && col != 3){
-                    item->setTextAlignment(Qt::AlignCenter); // Размещение текста по центру
-                }
-                if (row % 2 == 0){
-                    item->setBackground(brushBlack); // Стилизация нечетных строк
-                } else {
-                    item->setBackground(brushDefault); // Стилизация четных строк
-                }
-                item->setFlags(item->flags() & ~Qt::ItemIsEditable); // Read-only mode для ячеек
-            }
-        }
-    }
-    tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch); // Адаптивный дизайн для первого столбца
-}
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    applyHeaderStyles(ui->tableWidget);
+    setupHeaderStyles(ui->tableWidget);
 
     QMenuBar *menubar = new QMenuBar(this);
     setMenuBar(menubar);
-
-    QMenu *fileMenu = menubar->addMenu("File");
-
-    QAction *saveAct = new QAction("Save", this);
-    QAction *openAct = new QAction("Open", this);
-    QAction *exitAct = new QAction("Exit", this);
-
-    fileMenu->addAction(saveAct);
-    fileMenu->addAction(openAct);
-    fileMenu->addSeparator();
-    fileMenu->addAction(exitAct);
-
-    QMenu *toolMenu = menubar->addMenu("Edit");
-
-    act_add = new QAction("Add", this);
-    connect(act_add, &QAction::triggered, this, &MainWindow::addEntry);
-    connect(ui->btn_add, &QPushButton::clicked, this, &MainWindow::addEntry);
-
-    act_edit = new QAction("Edit", this);
-    act_edit->setEnabled(false);
-    connect(act_edit, &QAction::triggered, this, &MainWindow::editEntry);
-    connect(ui->btn_edit, &QPushButton::clicked, this, &MainWindow::editEntry);
-
-    act_remove = new QAction("Delete", this);
-    act_remove->setEnabled(false);
-    connect(act_remove, &QAction::triggered, this, &MainWindow::removeEntry);
-    connect(ui->btn_remove, &QPushButton::clicked, this, &MainWindow::removeEntry);
-
-    toolMenu->addAction(act_add);
-    toolMenu->addAction(act_edit);
-    toolMenu->addSeparator();
-    toolMenu->addAction(act_remove);
+    setupMenuBar(menubar);
 
     editform = new EditForm;
     connect(editform, &EditForm::addNewRecordRequested, this, &MainWindow::addNewRecord);
@@ -80,21 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-// Изменение состояния функциональных кнопок
-void MainWindow::onTableSelectionChanged() {
-    if (ui->tableWidget->selectedItems().isEmpty()) {
-        ui->btn_edit->setEnabled(false);
-        ui->btn_remove->setEnabled(false);
-        act_edit->setEnabled(false);
-        act_remove->setEnabled(false);
-    } else {
-        ui->btn_edit->setEnabled(true);
-        ui->btn_remove->setEnabled(true);
-        act_edit->setEnabled(true);
-        act_remove->setEnabled(true);
-    }
 }
 
 void MainWindow::addEntry()
@@ -142,13 +68,14 @@ void MainWindow::removeEntry()
     if (selectedRow >= 0)
     {
         ui->tableWidget->removeRow(selectedRow);
-        applyHeaderStyles(ui->tableWidget);
+        setupHeaderStyles(ui->tableWidget);
     }
 }
 
 void MainWindow::addNewRecord(const Car &car, int row)
 {
-    ui->tableWidget->insertRow(row);
+    if(row == ui->tableWidget->rowCount()) //Если индекс == кол-ву строк -> добавляем запись
+        ui->tableWidget->insertRow(row);
 
     QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
     QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
@@ -166,5 +93,84 @@ void MainWindow::addNewRecord(const Car &car, int row)
     ui->tableWidget->setItem(row, 5, driveItem);
     ui->tableWidget->setItem(row, 6, positionItem);
 
-    applyHeaderStyles(ui->tableWidget);
+    setupHeaderStyles(ui->tableWidget);
+}
+
+// Изменение состояния функциональных кнопок
+void MainWindow::onTableSelectionChanged() {
+    if (ui->tableWidget->selectedItems().isEmpty()) {
+        ui->btn_edit->setEnabled(false);
+        ui->btn_remove->setEnabled(false);
+        act_edit->setEnabled(false);
+        act_remove->setEnabled(false);
+    } else {
+        ui->btn_edit->setEnabled(true);
+        ui->btn_remove->setEnabled(true);
+        act_edit->setEnabled(true);
+        act_remove->setEnabled(true);
+    }
+}
+
+void MainWindow::setupHeaderStyles(QTableWidget *tableWidget){
+    QColor colorBlack(2370104); //#242A38
+    QColor colorDefault(3093826); //#2F3542
+    QBrush brushBlack(colorBlack);
+    QBrush brushDefault(colorDefault);
+
+    // Выделение всей строки при нажатии на ячейку
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    for (int row = 0; row < tableWidget->rowCount(); ++row) {
+        for (int col = 0; col < tableWidget->columnCount(); ++col) {
+            QTableWidgetItem *item = tableWidget->item(row, col);
+            if (item) {
+                if (col != 0 && col != 3){
+                    item->setTextAlignment(Qt::AlignCenter); // Размещение текста по центру
+                }
+                if (row % 2 == 0){
+                    item->setBackground(brushBlack); // Стилизация нечетных строк
+                } else {
+                    item->setBackground(brushDefault); // Стилизация четных строк
+                }
+                item->setFlags(item->flags() & ~Qt::ItemIsEditable); // Read-only mode для ячеек
+            }
+        }
+    }
+    tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch); // Адаптивный дизайн для первого столбца
+}
+
+void MainWindow::setupMenuBar(QMenuBar *menubar){
+    //                                (tr("&...")) для макросов Alt+...
+    QMenu *fileMenu = menubar->addMenu(tr("&File"));
+
+    QAction *saveAct = new QAction(tr("Save"), this);
+    QAction *openAct = new QAction(tr("Open"), this);
+    QAction *exitAct = new QAction(tr("Exit"), this);
+
+    fileMenu->addAction(saveAct);
+    fileMenu->addAction(openAct);
+    fileMenu->addSeparator();
+    fileMenu->addAction(exitAct);
+
+    QMenu *toolMenu = menubar->addMenu(tr("&Edit"));
+
+    act_add = new QAction(tr("&Add"), this);
+    connect(act_add, &QAction::triggered, this, &MainWindow::addEntry);
+    connect(ui->btn_add, &QPushButton::clicked, this, &MainWindow::addEntry);
+
+    act_edit = new QAction(tr("&Edit"), this);
+    act_edit->setEnabled(false);
+    connect(act_edit, &QAction::triggered, this, &MainWindow::editEntry);
+    connect(ui->btn_edit, &QPushButton::clicked, this, &MainWindow::editEntry);
+
+    act_remove = new QAction(tr("&Delete"), this);
+    act_remove->setEnabled(false);
+    connect(act_remove, &QAction::triggered, this, &MainWindow::removeEntry);
+    connect(ui->btn_remove, &QPushButton::clicked, this, &MainWindow::removeEntry);
+
+    toolMenu->addAction(act_add);
+    toolMenu->addAction(act_edit);
+    toolMenu->addSeparator();
+    toolMenu->addAction(act_remove);
+
 }
