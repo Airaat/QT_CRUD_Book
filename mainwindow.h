@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
+#include <QFileDialog>
+#include <QDebug>
+#include <QMessageBox>
 #include <QMenuBar>
 #include <editform.h>
 
@@ -27,6 +30,8 @@ private slots:
     void editEntry();
     void removeEntry();
 
+    void readFromFile();
+    void writeToFile();
     void onTableSelectionChanged();
 
 private:

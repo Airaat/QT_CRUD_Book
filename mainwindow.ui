@@ -165,12 +165,12 @@ QTableWidget {
       </item>
       <item row="0" column="3">
        <property name="text">
-        <string>Купе</string>
+        <string>Coupe</string>
        </property>
       </item>
       <item row="0" column="4">
        <property name="text">
-        <string>Автоматическая</string>
+        <string>Auto</string>
        </property>
       </item>
       <item row="0" column="5">
@@ -215,12 +215,12 @@ QTableWidget {
       </item>
       <item row="1" column="3">
        <property name="text">
-        <string>Кроссовер</string>
+        <string>Crossover</string>
        </property>
       </item>
       <item row="1" column="4">
        <property name="text">
-        <string>Автоматическая</string>
+        <string>Auto</string>
        </property>
       </item>
       <item row="1" column="5">

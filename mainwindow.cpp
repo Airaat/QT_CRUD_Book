@@ -74,8 +74,11 @@ void MainWindow::removeEntry()
 
 void MainWindow::addNewRecord(const Car &car, int row)
 {
-    if(row == ui->tableWidget->rowCount()) //Если индекс == кол-ву строк -> добавляем запись
+    if(row == ui->tableWidget->rowCount()){
+        //Если индекс == кол-ву строк -> добавляем запись
         ui->tableWidget->insertRow(row);
+//        car.addCar(car);
+    }
 
     QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(car.getModel()));
     QTableWidgetItem *yearItem = new QTableWidgetItem(QString::number(car.getYear()));
@@ -111,6 +114,74 @@ void MainWindow::onTableSelectionChanged() {
     }
 }
 
+void MainWindow::readFromFile(){
+    // Открываем диалоговое окно для выбора файла
+    QString filePath = QFileDialog::getOpenFileName(nullptr, "Open File", "", "Text Files (*.txt)");
+    QFile file(filePath);
+    if (!filePath.isEmpty()) {
+        qDebug() << "Выбран файл для открытия: " << filePath;
+
+    } else {
+        qDebug() << "Отменено пользователем.";
+    }
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(this, tr("Ошибка при открытии файла"),file.errorString());
+        return;
+    }
+
+    QList<Car> cars;
+    QDataStream in(&file);
+    in >> cars;
+
+    if (cars.isEmpty()) {
+        QMessageBox::information(this, tr("Нет данных в файле"),
+                                 tr("Файл пустой."));
+    } else {
+        for (const auto &car: std::as_const(cars)){
+            int row = ui->tableWidget->rowCount();
+            addNewRecord(car, row);
+        }
+    }
+}
+
+void MainWindow::writeToFile(){
+    QString filePath = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.txt)");
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::information(this, tr("Ошибка при открытии файла"), file.errorString());
+        return;
+    }
+
+    QDataStream out(&file);
+    QList<Car> cars;
+
+    for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
+        QString name = ui->tableWidget->item(row, 0)->text();
+        QString year = ui->tableWidget->item(row, 1)->text();
+        QString mileage = ui->tableWidget->item(row, 2)->text();
+        QString body = ui->tableWidget->item(row, 3)->text();
+        QString gearbox = ui->tableWidget->item(row, 4)->text();
+        QString drive = ui->tableWidget->item(row, 5)->text();
+        QString position = ui->tableWidget->item(row, 6)->text();
+
+        // Создаем объект Car и добавляем его в список
+        Car car(
+            name.toStdString(),
+            year.toUInt(),
+            mileage.toUInt(),
+            body.toStdString(),
+            gearbox.toStdString(),
+            drive.toStdString(),
+            (position.toUpper() == "R") ? true : false
+            );
+
+        cars.append(car);
+    }
+    out << cars;
+}
+
 void MainWindow::setupHeaderStyles(QTableWidget *tableWidget){
     QColor colorBlack(2370104); //#242A38
     QColor colorDefault(3093826); //#2F3542
@@ -144,7 +215,9 @@ void MainWindow::setupMenuBar(QMenuBar *menubar){
     QMenu *fileMenu = menubar->addMenu(tr("&File"));
 
     QAction *saveAct = new QAction(tr("Save"), this);
+    connect(saveAct, &QAction::triggered, this, &MainWindow::writeToFile);
     QAction *openAct = new QAction(tr("Open"), this);
+    connect(openAct, &QAction::triggered, this, &MainWindow::readFromFile);
     QAction *exitAct = new QAction(tr("Exit"), this);
 
     fileMenu->addAction(saveAct);
