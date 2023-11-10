@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 
 void applyHeaderStyles(QTableWidget *tableWidget){
-    QColor colorBlack("#242A38");
-    QColor colorDefault("#2F3542");
+    QColor colorBlack(2370104); //#242A38
+    QColor colorDefault(3093826); //#2F3542
     QBrush brushBlack(colorBlack);
     QBrush brushDefault(colorDefault);
 
