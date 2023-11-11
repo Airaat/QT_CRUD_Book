@@ -138,16 +138,16 @@ void MainWindow::readFromFile(){
         QMessageBox::information(this, tr("Нет данных в файле"),
                                  tr("Файл пустой."));
     } else {
+        ui->tableWidget->setRowCount(cars.size());
+        int row = 0;
         for (const auto &car: std::as_const(cars)){
-            int row = ui->tableWidget->rowCount();
-            addNewRecord(car, row);
+            addNewRecord(car, row++);
         }
     }
 }
 
 void MainWindow::writeToFile(){
     QString filePath = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.dat)");
-    qDebug() << filePath << "\n" ;
     QFile file(filePath);
 
     if (!file.open(QIODevice::WriteOnly)) {
@@ -162,11 +162,12 @@ void MainWindow::writeToFile(){
         QString name = ui->tableWidget->item(row, 0)->text();
         QString year = ui->tableWidget->item(row, 1)->text();
         QString mileage = ui->tableWidget->item(row, 2)->text();
+        mileage = mileage.mid(0,mileage.length()-3);
         QString body = ui->tableWidget->item(row, 3)->text();
         QString gearbox = ui->tableWidget->item(row, 4)->text();
         QString drive = ui->tableWidget->item(row, 5)->text();
         QString position = ui->tableWidget->item(row, 6)->text();
-        qDebug() << name << year << mileage << body << gearbox << drive << position << "\n" ;
+//        qDebug() << name << year << mileage << body << gearbox << drive << position << "\n" ;
 
         // Создаем объект Car и добавляем его в список
         Car car(
@@ -178,7 +179,13 @@ void MainWindow::writeToFile(){
             drive.toStdString(),
             (position.toUpper() == "R") ? 1 : 0
             );
-        //qDebug() << car.getModel() << car.getYear() << car.getMileage() << car.getBody() << car.getGearbox() << car.getDrive() << car.getPosition() << "\n";
+        /*qDebug() << QString::fromStdString(car.getModel())
+                 << car.getYear()
+                 << car.getMileage()
+                 << QString::fromStdString(car.getBody())
+                 << QString::fromStdString(car.getGearbox())
+                 << QString::fromStdString(car.getDrive())
+                 << car.getPosition() << "\n";*/
         cars.append(car);
     }
     out << cars;
@@ -221,6 +228,7 @@ void MainWindow::setupMenuBar(QMenuBar *menubar){
     QAction *openAct = new QAction(tr("Open"), this);
     connect(openAct, &QAction::triggered, this, &MainWindow::readFromFile);
     QAction *exitAct = new QAction(tr("Exit"), this);
+    connect(exitAct, &QAction::triggered, this, &QWidget::close);
 
     fileMenu->addAction(saveAct);
     fileMenu->addAction(openAct);

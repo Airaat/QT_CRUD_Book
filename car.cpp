@@ -71,7 +71,7 @@ QDataStream &operator>>(QDataStream &stream, Car &car) {
     car._body = body.toStdString();
     car._gearbox = gearbox.toStdString();
     car._drive = drive.toStdString();
-    car._position = position.toInt();
+    car._position = (position == "R") ? true : false;
     return stream;
 }
 

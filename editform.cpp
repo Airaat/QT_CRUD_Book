@@ -26,7 +26,6 @@ void EditForm::Confirm()
     QString modelText = ui->edit_name->text();
     QString yearText = ui->edit_year->text();
     QString mileageText = ui->edit_milage->text();
-    mileageText = mileageText.mid(0,mileageText.length()-3);
     if(modelText.isEmpty()){
         err = 1;
     } else {

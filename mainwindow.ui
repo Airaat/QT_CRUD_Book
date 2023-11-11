@@ -165,12 +165,12 @@ QTableWidget {
       </item>
       <item row="0" column="3">
        <property name="text">
-        <string>Coupe</string>
+        <string>Купе</string>
        </property>
       </item>
       <item row="0" column="4">
        <property name="text">
-        <string>Auto</string>
+        <string>Автоматическая</string>
        </property>
       </item>
       <item row="0" column="5">
@@ -183,7 +183,7 @@ QTableWidget {
       </item>
       <item row="0" column="6">
        <property name="text">
-        <string>L</string>
+        <string>R</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -215,12 +215,12 @@ QTableWidget {
       </item>
       <item row="1" column="3">
        <property name="text">
-        <string>Crossover</string>
+        <string>Кроссовер</string>
        </property>
       </item>
       <item row="1" column="4">
        <property name="text">
-        <string>Auto</string>
+        <string>Роботизированная</string>
        </property>
       </item>
       <item row="1" column="5">
@@ -233,7 +233,7 @@ QTableWidget {
       </item>
       <item row="1" column="6">
        <property name="text">
-        <string>L</string>
+        <string>R</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
