@@ -29,6 +29,7 @@ private slots:
     void addEntry();
     void editEntry();
     void removeEntry();
+    void filterEntry();
 
     void readFromFile();
     void writeToFile();

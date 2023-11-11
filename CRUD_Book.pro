@@ -11,16 +11,19 @@ CONFIG += c++17
 SOURCES += \
     car.cpp \
     editform.cpp \
+    filterform.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     car.h \
     editform.h \
+    filterform.h \
     mainwindow.h
 
 FORMS += \
     editform.ui \
+    filterform.ui \
     mainwindow.ui
 
 # Default rules for deployment.

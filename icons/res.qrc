@@ -1,10 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>car.jpg</file>
-        <file>car.png</file>
         <file>cross.svg</file>
-        <file>logo.png</file>
         <file>pencil.svg</file>
         <file>plus.svg</file>
+        <file>filter.svg</file>
     </qresource>
 </RCC>
