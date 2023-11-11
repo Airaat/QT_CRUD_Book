@@ -45,13 +45,13 @@ bool Car::operator!=(const Car &other) const {
 }
 
 QDataStream &operator<<(QDataStream &stream, const Car &car) {
-    QString position = (car._position) ? "R" : "L";
-    stream << QString::fromStdString(car._model)
-           << QString::number(car._year)
-           << QString::number(car._mileage)
-           << QString::fromStdString(car._body)
-           << QString::fromStdString(car._gearbox)
-           << QString::fromStdString(car._drive)
+    QString position = (car.getPosition()) ? "R" : "L";
+    stream << QString::fromStdString(car.getModel())
+           << QString::number(car.getYear())
+           << QString::number(car.getMileage())
+           << QString::fromStdString(car.getBody())
+           << QString::fromStdString(car.getGearbox())
+           << QString::fromStdString(car.getDrive())
            << position;
     return stream;
 }

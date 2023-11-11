@@ -116,7 +116,7 @@ void MainWindow::onTableSelectionChanged() {
 
 void MainWindow::readFromFile(){
     // Открываем диалоговое окно для выбора файла
-    QString filePath = QFileDialog::getOpenFileName(nullptr, "Open File", "", "Text Files (*.txt)");
+    QString filePath = QFileDialog::getOpenFileName(nullptr, "Open File", "", "Text Files (*.dat)");
     QFile file(filePath);
     if (!filePath.isEmpty()) {
         qDebug() << "Выбран файл для открытия: " << filePath;
@@ -146,10 +146,11 @@ void MainWindow::readFromFile(){
 }
 
 void MainWindow::writeToFile(){
-    QString filePath = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.txt)");
+    QString filePath = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.dat)");
+    qDebug() << filePath << "\n" ;
     QFile file(filePath);
 
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::WriteOnly)) {
         QMessageBox::information(this, tr("Ошибка при открытии файла"), file.errorString());
         return;
     }
@@ -165,6 +166,7 @@ void MainWindow::writeToFile(){
         QString gearbox = ui->tableWidget->item(row, 4)->text();
         QString drive = ui->tableWidget->item(row, 5)->text();
         QString position = ui->tableWidget->item(row, 6)->text();
+        qDebug() << name << year << mileage << body << gearbox << drive << position << "\n" ;
 
         // Создаем объект Car и добавляем его в список
         Car car(
@@ -174,9 +176,9 @@ void MainWindow::writeToFile(){
             body.toStdString(),
             gearbox.toStdString(),
             drive.toStdString(),
-            (position.toUpper() == "R") ? true : false
+            (position.toUpper() == "R") ? 1 : 0
             );
-
+        //qDebug() << car.getModel() << car.getYear() << car.getMileage() << car.getBody() << car.getGearbox() << car.getDrive() << car.getPosition() << "\n";
         cars.append(car);
     }
     out << cars;
