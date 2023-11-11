@@ -13,8 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
     setupMenuBar(menubar);
 
     editform = new EditForm;
+    filterform = new FilterForm;
     connect(editform, &EditForm::addNewRecordRequested, this, &MainWindow::addNewRecord);
+    connect(filterform, &FilterForm::filterRecordsRequested, this, &MainWindow::filterRecords);
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, &MainWindow::onTableSelectionChanged);
+    connect(ui->btn_filter, &QPushButton::clicked, this, &MainWindow::filterEntry);
 
 }
 
@@ -28,6 +31,10 @@ void MainWindow::addEntry()
     int row = ui->tableWidget->rowCount();
     editform->setIndex(row);
     editform->show();
+}
+
+void MainWindow::filterEntry(){
+    filterform->show();
 }
 
 void MainWindow::editEntry()
@@ -98,7 +105,30 @@ void MainWindow::addNewRecord(const Car &car, int row)
 
     setupHeaderStyles(ui->tableWidget);
 }
-
+//Можно добавить flag, который будет поднят если нашлась хотя бы одна запись
+//и тогда выполняется второй цикл фор иначе QMessageBox (Совпадений нет)
+void MainWindow::filterRecords(const size_t min, const size_t max){
+    QList<Car> filteredCars;
+    for(int row = 0; row < ui->tableWidget->rowCount(); row++){
+        QString mileageText = ui->tableWidget->item(row, 2)->text();
+        size_t mileage = mileageText.mid(0,mileageText.length()-3).toUInt();
+        if(min <= mileage && mileage <= max){
+            std::string name = ui->tableWidget->item(row, 0)->text().toStdString();
+            size_t year = ui->tableWidget->item(row, 1)->text().toUInt();
+            std::string body = ui->tableWidget->item(row, 3)->text().toStdString();
+            std::string gearbox = ui->tableWidget->item(row, 4)->text().toStdString();
+            std::string drive = ui->tableWidget->item(row, 5)->text().toStdString();
+            bool position = (ui->tableWidget->item(row, 6)->text().toUpper() == "R") ? true : false;
+            Car car(name, year, mileage, body, gearbox, drive, position);
+            filteredCars.append(car);
+        }
+    }
+    int row = 0;
+    ui->tableWidget->setRowCount(filteredCars.size());
+    for (const auto &car: std::as_const(filteredCars)){
+        addNewRecord(car, row++);
+    }
+}
 // Изменение состояния функциональных кнопок
 void MainWindow::onTableSelectionChanged() {
     if (ui->tableWidget->selectedItems().isEmpty()) {
@@ -167,7 +197,6 @@ void MainWindow::writeToFile(){
         QString gearbox = ui->tableWidget->item(row, 4)->text();
         QString drive = ui->tableWidget->item(row, 5)->text();
         QString position = ui->tableWidget->item(row, 6)->text();
-//        qDebug() << name << year << mileage << body << gearbox << drive << position << "\n" ;
 
         // Создаем объект Car и добавляем его в список
         Car car(
@@ -179,13 +208,6 @@ void MainWindow::writeToFile(){
             drive.toStdString(),
             (position.toUpper() == "R") ? 1 : 0
             );
-        /*qDebug() << QString::fromStdString(car.getModel())
-                 << car.getYear()
-                 << car.getMileage()
-                 << QString::fromStdString(car.getBody())
-                 << QString::fromStdString(car.getGearbox())
-                 << QString::fromStdString(car.getDrive())
-                 << car.getPosition() << "\n";*/
         cars.append(car);
     }
     out << cars;

@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QMenuBar>
 #include <editform.h>
+#include <filterform.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,6 +39,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     EditForm *editform;
+    FilterForm *filterform;
 
     QAction *act_add;
     QAction *act_edit;
@@ -45,5 +47,6 @@ private:
 
 public slots:
     void addNewRecord(const Car &obj, int indexRow);
+    void filterRecords(const size_t min, const size_t max);
 };
 #endif // MAINWINDOW_H
